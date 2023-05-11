@@ -1,0 +1,25 @@
+body {
+  background-color: #f6f6f6;
+  padding-top: 30px;
+}
+
+.custom-bg {
+  background-color: #f6f6f6;
+}
+
+.nav-bgc {
+  background-color: #131313;
+  height: 50px;
+  width: 500px;
+  border-radius: 24px;
+}
+
+.nav-logo {
+  height: 100%;
+}
+
+.nav-bgc a {
+  text-decoration: none;
+  color: #f6f6f6;
+  font-size: large;
+}
