@@ -23,3 +23,41 @@ body {
   color: #f6f6f6;
   font-size: large;
 }
+
+.sidebar {
+  background-color: #131313;
+  color: #f6f6f6;
+  width: 200px;
+  position: fixed;
+  height: 100%;
+  left: -200px;
+  top: 0;
+  transition: left 0.3s ease-in-out;
+}
+
+.sidebar.show {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 10px 0;
+}
+
+.sidebar a {
+  color: #f6f6f6;
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+  padding: 10px;
+}
+
+.sidebar a:hover {
+  background-color: #f6f6f6;
+  color: #131313;
+}
