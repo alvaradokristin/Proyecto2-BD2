@@ -13,12 +13,52 @@
                 class="nav-logo"
               />
             </a>
-            <a href="#" id="toggle-sidebar">Homicidios</a>
-            <a href="">OMS</a>
-            <a href="">Turismo</a>
+            <a href="#" class="nav-link" data-option="1">Homicidios</a>
+            <a href="#" class="nav-link" data-option="2">OMS</a>
+            <a href="#" class="nav-link" data-option="3">Turismo 3</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+ 
+  // Obtener el elemento del sidebar
+  const sidebar = document.querySelector('.list-group');
+
+  // Escuchar eventos de clic en los elementos del navbar
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      // Obtener el número de opción del atributo data-option del enlace
+      const option = e.target.getAttribute('data-option');
+      // Limpiar el contenido del sidebar
+      sidebar.innerHTML = '';
+      // Agregar nuevas opciones dependiendo del número de opción seleccionado
+      if (option === '1') {
+        sidebar.innerHTML = `
+          <a href="#" class="list-group-item list-group-item-action bg-light"> Homicidios1 </a>
+          <a href="#" class="list-group-item list-group-item-action bg-light"> Homicidios2 </a>
+          <a href="#" class="list-group-item list-group-item-action bg-light"> Homicidios3 </a>` ;
+      } else if (option === '2') {
+        sidebar.innerHTML = 
+          `<a href="#" class="list-group-item list-group-item-action bg-light"> OMS1 </a>
+           <a href="#" class="list-group-item list-group-item-action bg-light"> OMS2 </a> 
+           <a href="#" class="list-group-item list-group-item-action bg-light"> OMS3 </a>
+           <a href="#" class="list-group-item list-group-item-action bg-light"> OMS4 </a> `;
+
+      } else if (option === '3') {
+        sidebar.innerHTML = 
+        `<a href="#" class="list-group-item list-group-item-action bg-light"> Turimso1 </a> 
+         <a href="#" class="list-group-item list-group-item-action bg-light"> Turimso2 </a> 
+         <a href="#" class="list-group-item list-group-item-action bg-light"> Turimso3 </a>`;
+      }
+    });
+  });
+
+});
+</script>
