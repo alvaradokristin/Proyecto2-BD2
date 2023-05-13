@@ -8,7 +8,7 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/../Frontend/views");
 
 const path = require("path");
-// st the correct rout for public folder
+// set the correct route for public folder
 app.use(express.static(path.join(__dirname, "..", "Frontend", "public")));
 
 app.get("/", function (req, res) {

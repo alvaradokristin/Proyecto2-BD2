@@ -1,0 +1,26 @@
+<div class="my-3">
+  <canvas id="area_chart"></canvas>
+</div>
+
+<script>
+  var ctx = document.getElementById("area_chart").getContext("2d");
+  var lab = "<%= labels %>".split(",");
+  var chartData = "<%= chartData %>".split(",").map(Number);
+
+  var myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: lab,
+      datasets: [
+        {
+          label: "Datos de ejemplo",
+          data: chartData,
+          backgroundColor: "rgba(54, 162, 235, 0.2)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1,
+          fill: true,
+        },
+      ],
+    },
+  });
+</script>
