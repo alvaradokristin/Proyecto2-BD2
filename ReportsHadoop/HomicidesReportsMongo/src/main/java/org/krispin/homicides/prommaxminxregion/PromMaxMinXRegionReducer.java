@@ -30,7 +30,7 @@ public class PromMaxMinXRegionReducer extends Reducer<Text, FloatWritable, Text,
 
         float average = sum / count;
 
-        String output = "Promedio: " + average + " Maximo: " + max + " Minimo: " + min;
+        String output = "Promedio: " + average + "\tMaximo: " + max + "\tMinimo: " + min;
         result.set(output);
         context.write(key, result);
     }
