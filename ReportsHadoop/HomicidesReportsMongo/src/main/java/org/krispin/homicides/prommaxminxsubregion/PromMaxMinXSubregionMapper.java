@@ -14,7 +14,7 @@ public class PromMaxMinXSubregionMapper extends Mapper<Object, Text, Text, Float
         String line = value.toString();
         String[] columns = line.split(";");
 
-        if (columns.length >= 30) {
+        if (columns.length >= 10) {
             String subregion = columns[1];
 
             if (subregion.equals("Subregion")) {

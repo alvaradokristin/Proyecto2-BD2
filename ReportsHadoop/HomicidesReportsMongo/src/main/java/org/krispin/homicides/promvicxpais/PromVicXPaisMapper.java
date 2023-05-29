@@ -15,7 +15,7 @@ public class PromVicXPaisMapper extends Mapper<LongWritable, Text, Text, FloatWr
         String line = value.toString();
         String[] columns = line.split(";");
 
-        if (columns.length >= 30) {
+        if (columns.length >= 10) {
             String countryName = columns[2];
             float totalHomicides = 0.0f;
             int numYears = 0;

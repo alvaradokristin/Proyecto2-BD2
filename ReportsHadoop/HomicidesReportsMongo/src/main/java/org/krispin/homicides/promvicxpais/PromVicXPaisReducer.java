@@ -20,21 +20,5 @@ public class PromVicXPaisReducer extends Reducer<Text, FloatWritable, Text, Floa
         float average = sum / count;
         result.set(average);
         context.write(key, result);
-
-        // =========================== MONGO SET UP=========================== \\
-
-//        String connString = "mongodb+srv://josuemartinezcr:bd21234@bd2-p2.d37xqum.mongodb.net/?retryWrites=true&w=majority";
-//        MongoClient client = MongoClients.create(connString);
-//
-//        MongoDatabase database = client.getDatabase("test");
-//        MongoCollection<Document> collection = database.getCollection("exampleReport");
-//
-//        // Crear el nuevo documento
-//        Document newDoc = new Document();
-//        newDoc.append("pais", key.toString());
-//        newDoc.append("valor", result.get());
-//
-//        // Insertar el nuevo documento en la colección de MongoDB
-//        collection.insertOne(newDoc);
     }
 }
