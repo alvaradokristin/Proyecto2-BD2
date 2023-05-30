@@ -14,7 +14,7 @@ public class PromMaxMinXRegionMapper extends Mapper<Object, Text, Text, FloatWri
         String line = value.toString();
         String[] columns = line.split(";");
 
-        if (columns.length >= 30) {
+        if (columns.length >= 10) {
             String region = columns[0];
 
             if (region.equals("Region")) {
