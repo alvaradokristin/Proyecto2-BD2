@@ -35,7 +35,8 @@ whoPages = {
     "http://data.un.org/Data.aspx?d=WHO&f=MEASURE_CODE%3aimr": "Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)",
     "http://data.un.org/Data.aspx?d=WHO&f=MEASURE_CODE%3atfr": "Total fertility rate (per woman)",
     "http://data.un.org/Data.aspx?d=WHO&f=MEASURE_CODE%3aWHS7_149": "General government expenditure on health as a percentage of total expenditure on health",
-    "http://data.un.org/Data.aspx?d=WHO&f=MEASURE_CODE%3aWHOSIS_000001": "Life expectancy at birth (years)"
+    "http://data.un.org/Data.aspx?d=WHO&f=MEASURE_CODE%3aWHOSIS_000001": "Life expectancy at birth (years)",
+    "http://data.un.org/Data.aspx?d=WHO&f=MEASURE_CODE%3aWHS9_86": "Population in thousands total"
 }
 
 
