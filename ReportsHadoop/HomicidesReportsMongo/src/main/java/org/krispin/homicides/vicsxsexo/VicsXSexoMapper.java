@@ -1,4 +1,4 @@
-package org.krispin.homicides.promvicxpaisxsexo;
+package org.krispin.homicides.vicsxsexo;
 
 import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class PromVicXPaisxSexoMapper extends Mapper<LongWritable, Text, Text, FloatWritable> {
+public class VicsXSexoMapper extends Mapper<LongWritable, Text, Text, FloatWritable> {
     private final static FloatWritable homicideCount = new FloatWritable();
     private Text countrySex = new Text();
 
@@ -16,18 +16,12 @@ public class PromVicXPaisxSexoMapper extends Mapper<LongWritable, Text, Text, Fl
         String[] columns = line.split(";");
 
         if (columns.length >= 10) {
-            String country = columns[2];
             String sex = columns[3];
             float totalHomicides = 0.0f;
             int numYears = 0;
 
-            if (country.equals("Country") || country.equals("country") || sex.equals("Gender")) {
+            if (sex.equals("Gender") || sex.isEmpty() || sex.equals("null")) {
                 // Ignorar la primera fila de encabezado
-                return;
-            }
-
-            if (country.isEmpty() || country.equals("null") || sex.isEmpty() || sex.equals("null")) {
-                // Ignorar las filas sin país o sexo
                 return;
             }
 
@@ -46,7 +40,7 @@ public class PromVicXPaisxSexoMapper extends Mapper<LongWritable, Text, Text, Fl
 
             if (numYears > 0) {
                 float averageHomicides = totalHomicides / numYears;
-                String keyText = country + "\t" + sex;
+                String keyText = sex;
                 countrySex.set(keyText);
                 homicideCount.set(averageHomicides);
                 context.write(countrySex, homicideCount);

@@ -1,7 +1,6 @@
-package org.krispin.homicides.promvicxpais;
+package org.krispin.homicides.vicsxsexo;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.FloatWritable;
@@ -9,25 +8,21 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.krispin.homicides.promvicxpaisxsexo.PromVicXPaisxSexoMapper;
+import org.krispin.homicides.promvicxpaisxsexo.PromVicXPaisxSexoReducer;
+import org.krispin.homicides.promvicxpaisxsexo.PromVicXPaisxSexoRunner;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
-public class PromVicXPaisRunner {
+public class VicsXSexoRunner {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "HomicidesReport");
-        job.setJarByClass(PromVicXPaisRunner.class);
-        job.setMapperClass(PromVicXPaisMapper.class);
-        job.setCombinerClass(PromVicXPaisReducer.class);
-        job.setReducerClass(PromVicXPaisReducer.class);
+        job.setJarByClass(PromVicXPaisxSexoRunner.class);
+        job.setMapperClass(PromVicXPaisxSexoMapper.class);
+        job.setReducerClass(PromVicXPaisxSexoReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FloatWritable.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));

@@ -1,4 +1,4 @@
-package org.krispin.homicides.prommaxminxregionxsexo;
+package org.krispin.homicides.prommaxminxregionxsexodec;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.io.FloatWritable;
@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class PromMaxMinXRegionXSexoMapper extends Mapper<Object, Text, Text, FloatWritable> {
+public class PromMaxMinXRegionXSexoDecMapper extends Mapper<Object, Text, Text, FloatWritable> {
     private final static FloatWritable homicideData = new FloatWritable();
     private Text keyText = new Text();
 
@@ -25,7 +25,7 @@ public class PromMaxMinXRegionXSexoMapper extends Mapper<Object, Text, Text, Flo
             }
 
             if (region.equals("(blank)")) {
-                // Ignorar las filas con la region: "(blank)"
+                // Ignorar las filas con la región: "(blank)"
                 return;
             }
 
@@ -33,8 +33,8 @@ public class PromMaxMinXRegionXSexoMapper extends Mapper<Object, Text, Text, Flo
                 if (!columns[i].isEmpty() && !columns[i].equals("null")) {
                     if (StringUtils.isNumeric(columns[i])) {
                         float homicides = Float.parseFloat(columns[i].replace(",", "."));
-                        int year = 2000 + ((i - 4) % 21);
-                        String keyEl = region + "\t" + gender + "\t" + year;
+                        int decade = 2000 + (((i - 4) / 21) * 10);
+                        String keyEl = region + "\t" + gender + "\t" + decade;
 
                         keyText.set(keyEl);
                         homicideData.set(homicides);

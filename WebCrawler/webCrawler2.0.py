@@ -51,7 +51,7 @@ def createCSV(type, data, url):
     if type == "who":
         filename = f"{whoPages[url].replace(' ', '_').replace(',_', '_').replace(',', '')}.csv"
     else:
-        filename = f"{pagesToUse[url].replace(' ', '_').replace(',_', '_').replace(',', '')}.csv"
+        filename = f"{pagesToUse[url].replace(' ', '_').replace(',_', '_').replace(',', '').replace('(', '').replace(')', '')}.csv"
 
     # Save CSV to local file
     with open(filename, mode='w', newline="") as f:
@@ -59,7 +59,7 @@ def createCSV(type, data, url):
         writer.writerows(data)
 
     # Upload CSV to HDFS
-    saveCSVtoHDFS(filename)
+    # saveCSVtoHDFS(filename)
 
 
 for url in pagesToUse.keys():

@@ -1,4 +1,4 @@
-package org.krispin.homicides.prommaxminxregionxsexo;
+package org.krispin.homicides.prommaxminxsubregionxsexodec;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.io.FloatWritable;
@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class PromMaxMinXRegionXSexoMapper extends Mapper<Object, Text, Text, FloatWritable> {
+public class PromMaxMinXSubregionXSexoDecMapper extends Mapper<Object, Text, Text, FloatWritable> {
     private final static FloatWritable homicideData = new FloatWritable();
     private Text keyText = new Text();
 
@@ -16,16 +16,16 @@ public class PromMaxMinXRegionXSexoMapper extends Mapper<Object, Text, Text, Flo
         String[] columns = line.split(";");
 
         if (columns.length >= 10) {
-            String region = columns[0];
+            String subregion = columns[1];
             String gender = columns[3];
 
-            if (region.equals("Region") || gender.isEmpty() || gender.equals("null")) {
+            if (subregion.equals("Subregion") || gender.isEmpty() || gender.equals("null")) {
                 // Ignorar la primera fila de encabezado y las filas sin sexo
                 return;
             }
 
-            if (region.equals("(blank)")) {
-                // Ignorar las filas con la region: "(blank)"
+            if (subregion.equals("(blank)")) {
+                // Ignorar las filas con la región: "(blank)"
                 return;
             }
 
@@ -33,8 +33,8 @@ public class PromMaxMinXRegionXSexoMapper extends Mapper<Object, Text, Text, Flo
                 if (!columns[i].isEmpty() && !columns[i].equals("null")) {
                     if (StringUtils.isNumeric(columns[i])) {
                         float homicides = Float.parseFloat(columns[i].replace(",", "."));
-                        int year = 2000 + ((i - 4) % 21);
-                        String keyEl = region + "\t" + gender + "\t" + year;
+                        int decade = 2000 + (((i - 4) / 21) * 10);
+                        String keyEl = subregion + "\t" + gender + "\t" + decade;
 
                         keyText.set(keyEl);
                         homicideData.set(homicides);
