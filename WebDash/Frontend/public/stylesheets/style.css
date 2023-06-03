@@ -45,14 +45,19 @@ body {
   background-color: #f6f6f6;
   color: #131313;
   font-weight: bold;
+  font-size: 14px;
   border: none;
   border-radius: 0;
   margin-bottom: 1px;
+  text-align: justify; /* Alinear el texto justificado */
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .list-group-item:hover {
-  background-color: #e6e6e6;
-  color: #131313;
+  background-color: #000000 !important; /* Añade !important */
+  color: #f8f4f4;
 }
 
 
