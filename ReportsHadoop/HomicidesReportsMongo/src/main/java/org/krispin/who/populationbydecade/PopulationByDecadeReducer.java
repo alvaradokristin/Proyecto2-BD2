@@ -1,6 +1,5 @@
-package org.krispin.homicides.homtrend;
+package org.krispin.who.populationbydecade;
 
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -13,23 +12,25 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomTrendReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-    private IntWritable totalHomicides = new IntWritable();
+public class PopulationByDecadeReducer extends Reducer<Text, IntWritable, Text, Text> {
+    private Text result = new Text();
     private List<String> outputList = new ArrayList<>();
 
-    public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
+    public void reduce(Text key, Iterable<IntWritable> values, Context context)
+            throws IOException, InterruptedException {
         int sum = 0;
 
-        for (IntWritable value : values) {
-            sum += value.get();
+        for (IntWritable val : values) {
+            int current = val.get();
+            sum += current;
         }
 
-        totalHomicides.set(sum);
-        context.write(key, totalHomicides);
+        String output = key.toString() + "\t" + sum;
+        result.set(output);
+        context.write(key, result);
 
         // Agrega los resultados a la lista
-        String resultLine = key.toString() + "\t" + totalHomicides;
-        outputList.add(resultLine);
+        outputList.add(output);
     }
 
     protected void cleanup(Context context) throws IOException, InterruptedException {
@@ -39,9 +40,7 @@ public class HomTrendReducer extends Reducer<Text, IntWritable, Text, IntWritabl
         try {
             Path outputPath = FileOutputFormat.getOutputPath(context);
             Path resultFilePath = new Path(outputPath, "result.txt");
-            FileSystem fs = outputPath.getFileSystem(context.getConfiguration());
-
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fs.create(resultFilePath, true)));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputPath.getFileSystem(context.getConfiguration()).create(resultFilePath, true)));
 
             for (String resultLine : outputList) {
                 writer.write(resultLine);

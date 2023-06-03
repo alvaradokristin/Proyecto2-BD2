@@ -1,8 +1,8 @@
-package org.krispin.homicides.homtrend;
+package org.krispin.homicides.vicsxsexo;
 
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -13,22 +13,25 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomTrendReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-    private IntWritable totalHomicides = new IntWritable();
+public class VicsXSexoReducer extends Reducer<Text, FloatWritable, Text, FloatWritable> {
+    private FloatWritable result = new FloatWritable();
     private List<String> outputList = new ArrayList<>();
 
-    public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        int sum = 0;
+    public void reduce(Text key, Iterable<FloatWritable> values, Context context) throws IOException, InterruptedException {
+        float sum = 0.0f;
+        int count = 0;
 
-        for (IntWritable value : values) {
-            sum += value.get();
+        for (FloatWritable val : values) {
+            sum += val.get();
+            count++;
         }
 
-        totalHomicides.set(sum);
-        context.write(key, totalHomicides);
+        float average = sum / count;
+        result.set(average);
+        context.write(key, result);
 
         // Agrega los resultados a la lista
-        String resultLine = key.toString() + "\t" + totalHomicides;
+        String resultLine = key.toString() + "\t" + average;
         outputList.add(resultLine);
     }
 

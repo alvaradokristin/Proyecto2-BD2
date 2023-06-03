@@ -1,8 +1,7 @@
-package org.krispin.homicides.homtrend;
+package org.krispin.who.fertilitypercentagequin;
 
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -13,22 +12,29 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomTrendReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-    private IntWritable totalHomicides = new IntWritable();
+public class FertilityPercentageQuinReducer extends Reducer<Text, FloatWritable, Text, Text> {
+    private Text result = new Text();
     private List<String> outputList = new ArrayList<>();
 
-    public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        int sum = 0;
+    public void reduce(Text key, Iterable<FloatWritable> values, Context context)
+            throws IOException, InterruptedException {
+        float sum = 0.0f;
+        int count = 0;
 
-        for (IntWritable value : values) {
-            sum += value.get();
+        for (FloatWritable val : values) {
+            float current = val.get();
+            sum += current;
+            count++;
         }
 
-        totalHomicides.set(sum);
-        context.write(key, totalHomicides);
+        float average = sum / count;
+
+        String output = String.format("%.2f", average);
+        result.set(output);
+        context.write(key, result);
 
         // Agrega los resultados a la lista
-        String resultLine = key.toString() + "\t" + totalHomicides;
+        String resultLine = key.toString() + "\t" + output;
         outputList.add(resultLine);
     }
 
@@ -39,9 +45,7 @@ public class HomTrendReducer extends Reducer<Text, IntWritable, Text, IntWritabl
         try {
             Path outputPath = FileOutputFormat.getOutputPath(context);
             Path resultFilePath = new Path(outputPath, "result.txt");
-            FileSystem fs = outputPath.getFileSystem(context.getConfiguration());
-
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fs.create(resultFilePath, true)));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputPath.getFileSystem(context.getConfiguration()).create(resultFilePath, true)));
 
             for (String resultLine : outputList) {
                 writer.write(resultLine);

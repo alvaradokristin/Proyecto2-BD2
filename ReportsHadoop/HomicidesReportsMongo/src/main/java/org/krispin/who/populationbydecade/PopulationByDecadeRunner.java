@@ -1,35 +1,27 @@
-package org.krispin.homicides.promvicxpais;
+package org.krispin.who.populationbydecade;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.FloatWritable;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
-public class PromVicXPaisRunner {
+public class PopulationByDecadeRunner {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf, "HomicidesReport");
-        job.setJarByClass(PromVicXPaisRunner.class);
-        job.setMapperClass(PromVicXPaisMapper.class);
-        job.setCombinerClass(PromVicXPaisReducer.class);
-        job.setReducerClass(PromVicXPaisReducer.class);
+        Job job = Job.getInstance(conf, "PopulationByDecade");
+        job.setJarByClass(PopulationByDecadeRunner.class);
+        job.setMapperClass(PopulationByDecadeMapper.class);
+        job.setReducerClass(PopulationByDecadeReducer.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(FloatWritable.class);
+        job.setOutputValueClass(IntWritable.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         System.exit(job.waitForCompletion(true) ? 0 : 1);

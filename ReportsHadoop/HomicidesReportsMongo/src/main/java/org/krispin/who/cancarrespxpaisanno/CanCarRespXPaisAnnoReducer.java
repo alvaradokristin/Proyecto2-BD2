@@ -1,8 +1,8 @@
-package org.krispin.homicides.homtrend;
+package org.krispin.who.cancarrespxpaisanno;
 
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -11,25 +11,22 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class HomTrendReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-    private IntWritable totalHomicides = new IntWritable();
+public class CanCarRespXPaisAnnoReducer extends Reducer<Text, FloatWritable, Text, Text> {
+    private Text result = new Text();
     private List<String> outputList = new ArrayList<>();
 
-    public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        int sum = 0;
+    protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+        for (Text value : values) {
+            context.write(key, value);
 
-        for (IntWritable value : values) {
-            sum += value.get();
+            // Agrega los resultados a la lista
+            String resultLine = key + "\t" + value;
+            outputList.add(resultLine);
         }
-
-        totalHomicides.set(sum);
-        context.write(key, totalHomicides);
-
-        // Agrega los resultados a la lista
-        String resultLine = key.toString() + "\t" + totalHomicides;
-        outputList.add(resultLine);
     }
 
     protected void cleanup(Context context) throws IOException, InterruptedException {
