@@ -126,6 +126,10 @@ public class MapReduceResultToMongo {
                         sex.add(values[1]);
                         average.add(Float.parseFloat(values[2]));
                         break;
+                    case "PromVicsXSexo":
+                        sex.add(values[0]);
+                        average.add(Float.parseFloat(values[1]));
+                        break;
                     case "PromMaxMinXSubregion":
                         subregions.add(values[0]);
                         years.add(Integer.parseInt(values[1]));

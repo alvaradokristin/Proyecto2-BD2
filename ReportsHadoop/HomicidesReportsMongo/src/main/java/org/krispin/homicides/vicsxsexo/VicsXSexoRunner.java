@@ -8,9 +8,6 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.krispin.homicides.promvicxpaisxsexo.PromVicXPaisxSexoMapper;
-import org.krispin.homicides.promvicxpaisxsexo.PromVicXPaisxSexoReducer;
-import org.krispin.homicides.promvicxpaisxsexo.PromVicXPaisxSexoRunner;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -20,9 +17,9 @@ public class VicsXSexoRunner {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "HomicidesReport");
-        job.setJarByClass(PromVicXPaisxSexoRunner.class);
-        job.setMapperClass(PromVicXPaisxSexoMapper.class);
-        job.setReducerClass(PromVicXPaisxSexoReducer.class);
+        job.setJarByClass(VicsXSexoRunner.class);
+        job.setMapperClass(VicsXSexoMapper.class);
+        job.setReducerClass(VicsXSexoReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FloatWritable.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));
