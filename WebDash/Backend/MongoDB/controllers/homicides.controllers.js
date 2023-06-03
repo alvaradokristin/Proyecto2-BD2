@@ -7,7 +7,7 @@ async function getHomicidesReport(req, res) {
       const homicideReport = await  homicides.find({report: req.params.reportType});
       const filterData = homicideReport[0]
 
-      if (!homicideReport) {
+      if (homicideReport.length === 0) {
         return res.status(404).json({ error: 'Reporte no encontrado' });
       }
       

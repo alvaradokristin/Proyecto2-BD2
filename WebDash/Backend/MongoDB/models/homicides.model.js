@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const homicidesSchema = mongoose.Schema({
     _id:String,
-    report:Array,
+    report:String,
     country:Array,
     region:Array,
     subregion:Array,
