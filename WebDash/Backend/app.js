@@ -1,6 +1,9 @@
 const express = require("express");
 const { startConnection } = require("./MongoDB/DB/database.js");
+const mongoose = require('mongoose');
 const app = express();
+const homicidesRoutes = require('./MongoDB/routes/homicides.routes.js');
+
 
 app.use(express.static("public"));
 
@@ -22,5 +25,9 @@ app.listen(3000, () => {
 async function main() {
   await startConnection();
 }
+
+
+
+app.use ('/api',homicidesRoutes);
 
 main();
