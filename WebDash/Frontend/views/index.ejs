@@ -6,11 +6,31 @@
 
   <body>
     <%- include('./partials/navbar'); %>
-        <%- include('./partials/sidebar'); %>
-      <div class="w-50">
-        <% if (type == "PromMaxMinXRegion") {%>
-          <%- include('./partials/charts/group_bar_chart', { data: lista }); %> 
-        <%}%>
-      </div>
+    <%- include('./partials/sidebar'); %>
+    <div class="w-50">
+      <% if (type == "PromMaxMinXRegion") { %>
+        <%- include('./partials/charts/group_bar_chart', { data: lista }); %>
+      <% } else if (type == "PromedioVictimas") { %>
+        <%- include('./partials/charts/line_chart', { data: lista }); %>
+      <% } else if (type == "HomicidesTrend") { %>
+        <%- include('./partials/charts/line_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXSubregion") { %>
+          <%- include('./partials/charts/group_bar_chart', { data: lista }); %>
+      <% } else if (type == "PromVicXPaisXSexo") { %>
+        <%- include('./partials/charts/area_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXRegionXSexo") { %>
+        <%- include('./partials/charts/bar_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXSubregionXSexo") { %>
+        <%- include('./partials/charts/bar_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXRegionXSexoDec") { %>
+        <%- include('./partials/charts/bar_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXSubregionXSexoDec") { %>
+        <%- include('./partials/charts/bar_chart', { data: lista }); %>
+      <% } else if (type == "PromVicsXSexo") { %>
+        <%- include('./partials/charts/line_chart', { data: lista }); %>
+      <% } else { %>
+        <p>No chart to display.</p>
+      <% } %>
+    </div>
   </body>
 </html>

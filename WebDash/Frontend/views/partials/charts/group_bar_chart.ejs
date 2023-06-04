@@ -6,11 +6,17 @@
   var ctx = document.getElementById("group_bar_chart").getContext("2d");
   var jsonDataStr = `<%- JSON.stringify(lista, null, 2).replace(/"/g, '\\"') %>`;
   var jsonData = JSON.parse(jsonDataStr);
-  console.log(jsonData.year);
-  var chartData = "PromMaxMinXRegion".split(",").map(Number); 
 
+  var dataLabels;
+  if (jsonData.report == "PromMaxMinXRegion") {
+    dataLabels == jsonData.year.map((year, index) => `${year} - ${jsonData.region[index]}`);
+  }
+  else if (jsonData.report == "PromMaxMinXSubregion") {
+    dataLabels == jsonData.year.map((year, index) => `${year} - ${jsonData.subregion[index]}`);
+  }
+  
   var data = {
-    labels: jsonData.year.map((year, index) => `${year} - ${jsonData.region[index]}`),
+    labels: dataLabels,
     datasets: [
       {
         label: "Average",
