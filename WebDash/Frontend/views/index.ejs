@@ -6,6 +6,11 @@
 
   <body>
     <%- include('./partials/navbar'); %>
-    <%- include('./partials/sidebar'); %>
+        <%- include('./partials/sidebar'); %>
+      <div class="w-50">
+        <% if (type == "PromMaxMinXRegion") {%>
+          <%- include('./partials/charts/group_bar_chart', { data: lista }); %> 
+        <%}%>
+      </div>
   </body>
 </html>
