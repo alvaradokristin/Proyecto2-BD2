@@ -8,9 +8,6 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.krispin.homicides.prommaxminxregionxsexo.PromMaxMinXRegionXSexoMapper;
-import org.krispin.homicides.prommaxminxregionxsexo.PromMaxMinXRegionXSexoReducer;
-import org.krispin.homicides.prommaxminxregionxsexo.PromMaxMinXRegionXSexoRunner;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -20,9 +17,9 @@ public class PromMaxMinXSubregionXSexoRunner {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "HomicidesReport");
-        job.setJarByClass(PromMaxMinXRegionXSexoRunner.class);
-        job.setMapperClass(PromMaxMinXRegionXSexoMapper.class);
-        job.setReducerClass(PromMaxMinXRegionXSexoReducer.class);
+        job.setJarByClass(PromMaxMinXSubregionXSexoRunner.class);
+        job.setMapperClass(PromMaxMinXSubregionXSexoMapper.class);
+        job.setReducerClass(PromMaxMinXSubregionXSexoReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FloatWritable.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));
