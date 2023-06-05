@@ -7,7 +7,38 @@
   <body>
     <%- include('./partials/navbar'); %>
     <%- include('./partials/sidebar'); %>
-   
-    
+    <div class="w-75 chart-margin">
+      <% if (type == "PromMaxMinXRegion") { %>
+        <%- include('./partials/charts/group_bar_chart', { data: lista }); %>
+      <% } else if (type == "PromedioVictimas") { %>
+        <%- include('./partials/charts/line_chart', { data: lista }); %>
+      <% } else if (type == "HomicidesTrend") { %>
+        <%- include('./partials/charts/line_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXSubregion") { %>
+          <%- include('./partials/charts/group_bar_chart', { data: lista }); %>
+      <% } else if (type == "PromVicXPaisXSexo") { %>
+        <%- include('./partials/charts/area_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXRegionXSexo") { %>
+        <%- include('./partials/charts/bar_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXSubregionXSexo") { %>
+        <%- include('./partials/charts/bar_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXRegionXSexoDec") { %>
+        <%- include('./partials/charts/bar_chart', { data: lista }); %>
+      <% } else if (type == "PromMaxMinXSubregionXSexoDec") { %>
+        <%- include('./partials/charts/bar_chart', { data: lista }); %>
+      <% } else if (type == "PromVicsXSexo") { %>
+        <%- include('./partials/charts/line_chart', { data: lista }); %>
+      <% } else if (type == "CanCarRespXPaisAnno") { %>
+          <%- include('./partials/charts/group_bar_chart', { data: lista }); %>
+      <% } else if (type == "FertilityPercentage") { %>
+        <%- include('./partials/charts/area_chart', { data: lista }); %>
+      <% } else if (type == "PopulationByDecade") { %>
+        <%- include('./partials/charts/area_chart', { data: lista }); %>
+      <% } else if (type == "FertilityPercentageQuin") { %>
+        <%- include('./partials/charts/area_chart', { data: lista }); %>
+      <% } else { %>
+        <p>Seleccione una opción.</p>
+      <% } %>
+    </div>
   </body>
 </html>

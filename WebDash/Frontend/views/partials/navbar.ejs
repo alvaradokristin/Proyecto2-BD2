@@ -15,7 +15,6 @@
             </a>
             <a href="#" class="nav-link" data-option="1">Homicidios</a>
             <a href="#" class="nav-link" data-option="2">OMS</a>
-            <a href="#" class="nav-link" data-option="3">Turismo 3</a>
           </div>
         </div>
       </div>
@@ -41,41 +40,27 @@ document.addEventListener('DOMContentLoaded', function() {
       // Agregar nuevas opciones dependiendo del número de opción seleccionado
       if (option === '1') {
         sidebar.innerHTML = `
-            <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio de Victimas de Homicidio por país </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Región por año</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Subregión por año </a>
-             <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio de Victimas de Homicidio por país por sexo </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Región y sexo por año</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Subregión y sexo por año </a>
-             <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Región y sexo por década </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Subregión y sexo por década</a>
+        <a href="/showHom/<%='PromedioVictimas'%>" class="list-group-item list-group-item-action bg-light"> Promedio de Victimas de Homicidio por país </a>
+            <a href="/showHom/<%='PromMaxMinXRegion'%>" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Región por año</a>
+            <a href="/showHom/<%='PromMaxMinXSubregion'%>" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Subregión por año </a>
+            <a href="/showHom/<%='PromVicXPaisXSexo'%>" class="list-group-item list-group-item-action bg-light"> Promedio de Victimas de Homicidio por país por sexo </a>
+            <a href="/showHom/<%='PromMaxMinXRegionXSexo'%>" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Región y sexo por año</a>
+            <a href="/showHom/<%='PromMaxMinXSubregionXSexo'%>" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Subregión y sexo por año </a>
+            <a href="/showHom/<%='PromMaxMinXRegionXSexoDec'%>" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Región y sexo por década </a>
+            <a href="/showHom/<%='PromMaxMinXSubregionXSexoDec'%>" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de Homicidios por Subregión y sexo por década</a>
+            <a href="/showHom/<%='HomicidesTrend'%>" class="list-group-item list-group-item-action bg-light"> Total de homicidios por país</a>
+            <a href="/showHom/<%='PromVicsXSexo'%>" class="list-group-item list-group-item-action bg-light"> Total de homicidios por sexo</a>
         ` ;
       } else if (option === '2') {
         sidebar.innerHTML = 
-          `<a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje de muertes por de personas entre 30 y 70 por cancer respecto al total </a>
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje de muertes por de personas entre 30 y 70 por enfermedades cardiovasculares respecto al total </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje de muertes por de personas entre 30 y 70 por enfermedades respiratorias respecto al total </a>
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de muertes por país de causas comunicadas </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de muertes por país de causas sin comunicadas </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de muertes por país de heridas </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Diferencia entre el primer año de medido de edad promedio por país y el último año medido </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Edad promedio por país por década </a>
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Cantidad de población por década </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje de fertilidad en adolescentes por cada 1000, por década y país </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje de fertilidad en adolescentes por cada 1000, por el quintil económico, país y década. </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje de fatalidad infantil antes del primer año por cada 1000, por quintil económico,país y década. </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> El porcentaje de fertilidad por década por país </a>
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Total, gastado en salud por país y década </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje gastado en salud por país y década del total del presupuesto del gobierno </a> 
-           <a href="#" class="list-group-item list-group-item-action bg-light">Expectativa de vida al nacimiento por país y década </a> `;
+          `<a href="/showWho<%='/CanCarRespXPaisAnno'%>" class="list-group-item list-group-item-action bg-light"> Porcentaje de muertes por de personas entre 30 y 70 por cancer, enfermedades cardiovasculare y respiratorias respecto al total </a>
+          <a href="/showWho<%='/PopulationByDecade'%>" class="list-group-item list-group-item-action bg-light"> Cantidad de población por década </a> 
+          <a href="/showWho<%='/FertilityPercentageQuin'%>" class="list-group-item list-group-item-action bg-light"> Porcentaje de fertilidad en adolescentes por cada 1000, por el quintil económico, país y década. </a> 
+          <a href="/showWho<%='/FertilityPercentage'%>" class="list-group-item list-group-item-action bg-light"> El porcentaje de fertilidad por década por país </a> `;
           
-      } else if (option === '3') {
-        sidebar.innerHTML = 
-        `<a href="#" class="list-group-item list-group-item-action bg-light"> Total, de turistas que entran por país por década </a> 
-         <a href="#" class="list-group-item list-group-item-action bg-light"> Total, de turistas que salen del país por década </a>`;
       }
     });
   });
-
+  
 });
 </script>
