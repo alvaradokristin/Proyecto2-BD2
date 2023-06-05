@@ -15,7 +15,6 @@
             </a>
             <a href="#" class="nav-link" data-option="1">Homicidios</a>
             <a href="#" class="nav-link" data-option="2">OMS</a>
-            <a href="#" class="nav-link" data-option="3">Turismo 3</a>
           </div>
         </div>
       </div>
@@ -55,24 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (option === '2') {
         sidebar.innerHTML = 
           `<a href="/showWho<%='/CanCarRespXPaisAnno'%>" class="list-group-item list-group-item-action bg-light"> Porcentaje de muertes por de personas entre 30 y 70 por cancer, enfermedades cardiovasculare y respiratorias respecto al total </a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de muertes por país de causas comunicadas </a> 
-          <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de muertes por país de causas sin comunicadas </a> 
-          <a href="#" class="list-group-item list-group-item-action bg-light"> Promedio, máximo y mínimo de muertes por país de heridas </a> 
-          <a href="#" class="list-group-item list-group-item-action bg-light"> Diferencia entre el primer año de medido de edad promedio por país y el último año medido </a> 
-          <a href="#" class="list-group-item list-group-item-action bg-light"> Edad promedio por país por década </a>
           <a href="/showWho<%='/PopulationByDecade'%>" class="list-group-item list-group-item-action bg-light"> Cantidad de población por década </a> 
-          <a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje de fertilidad en adolescentes por cada 1000, por década y país </a> 
           <a href="/showWho<%='/FertilityPercentageQuin'%>" class="list-group-item list-group-item-action bg-light"> Porcentaje de fertilidad en adolescentes por cada 1000, por el quintil económico, país y década. </a> 
-          <a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje de fatalidad infantil antes del primer año por cada 1000, por quintil económico,país y década. </a> 
-          <a href="/showWho<%='/FertilityPercentage'%>" class="list-group-item list-group-item-action bg-light"> El porcentaje de fertilidad por década por país </a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"> Total, gastado en salud por país y década </a> 
-          <a href="#" class="list-group-item list-group-item-action bg-light"> Porcentaje gastado en salud por país y década del total del presupuesto del gobierno </a> 
-          <a href="#" class="list-group-item list-group-item-action bg-light">Expectativa de vida al nacimiento por país y década </a> `;
+          <a href="/showWho<%='/FertilityPercentage'%>" class="list-group-item list-group-item-action bg-light"> El porcentaje de fertilidad por década por país </a> `;
           
-      } else if (option === '3') {
-        sidebar.innerHTML = 
-        `<a href="#" class="list-group-item list-group-item-action bg-light"> Total, de turistas que entran por país por década </a> 
-         <a href="#" class="list-group-item list-group-item-action bg-light"> Total, de turistas que salen del país por década </a>`;
       }
     });
   });
