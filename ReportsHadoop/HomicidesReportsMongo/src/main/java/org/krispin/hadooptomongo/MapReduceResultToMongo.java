@@ -126,12 +126,40 @@ public class MapReduceResultToMongo {
                         sex.add(values[1]);
                         average.add(Float.parseFloat(values[2]));
                         break;
+                    case "PromVicsXSexo":
+                        sex.add(values[0]);
+                        average.add(Float.parseFloat(values[1]));
+                        break;
                     case "PromMaxMinXSubregion":
                         subregions.add(values[0]);
                         years.add(Integer.parseInt(values[1]));
                         average.add(Float.parseFloat(values[2]));
                         max.add(Float.parseFloat(values[3]));
                         min.add(Float.parseFloat(values[4]));
+                        break;
+                    case "PromMaxMinXSubregionXSexo":
+                        subregions.add(values[0]);
+                        sex.add(values[1]);
+                        years.add(Integer.parseInt(values[2]));
+                        average.add(Float.parseFloat(values[3]));
+                        max.add(Float.parseFloat(values[4]));
+                        min.add(Float.parseFloat(values[5]));
+                        break;
+                    case "PromMaxMinXRegionXSexoDec":
+                        regions.add(values[0]);
+                        sex.add(values[1]);
+                        decades.add(Integer.parseInt(values[2]));
+                        average.add(Float.parseFloat(values[3]));
+                        max.add(Float.parseFloat(values[4]));
+                        min.add(Float.parseFloat(values[5]));
+                        break;
+                    case "PromMaxMinXSubregionXSexoDec":
+                        subregions.add(values[0]);
+                        sex.add(values[1]);
+                        decades.add(Integer.parseInt(values[2]));
+                        average.add(Float.parseFloat(values[3]));
+                        max.add(Float.parseFloat(values[4]));
+                        min.add(Float.parseFloat(values[5]));
                         break;
                 }
             }
@@ -237,9 +265,9 @@ public class MapReduceResultToMongo {
             readLinesFromHDFS(path);
         }
 
-        for (Path path : pathsWHO) {
-            readLinesFromWHO(path);
-        }
+//        for (Path path : pathsWHO) {
+//            readLinesFromWHO(path);
+//        }
     }
 }
 
