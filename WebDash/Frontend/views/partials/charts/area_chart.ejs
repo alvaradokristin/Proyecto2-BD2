@@ -3,36 +3,45 @@
 </div>
 
 <script>
-  var ctx = document.getElementById("area_chart").getContext("2d");
+var ctx = document.getElementById("area_chart").getContext("2d");
   var jsonDataStr = `<%- JSON.stringify(lista, null, 2).replace(/"/g, '\\"') %>`;
   var jsonData = JSON.parse(jsonDataStr);
 
-  var dataLabels, dataLbl1, dataLbl12, chartData1, chartData2;
-
+  var dataLabels, dataLbl12, chartData2;
+  
   if(jsonData.report == "PromVicXPaisXSexo"){
-    dataLabels = jsonData.country;
-
-    dataLbl = "Sexo";
-    chartData = jsonData.sex;
+    dataLabels = jsonData.sex.map((sex, index) => `${sex} - ${jsonData.country[index]}`)
 
     dataLbl12 = "Average";
     chartData2 = jsonData.average;
+  } 
+  else if (jsonData.report == "FertilityPercentage") {
+    dataLabels = jsonData.country.map((country, index) => `${country} - ${jsonData.decade[index]}`)
+
+    dataLbl12 = "Percentage";
+    chartData2 = jsonData.percentage;
+  }
+  else if (jsonData.report == "PopulationByDecade") {
+    dataLabels = jsonData.country.map((country, index) => `${country} - ${jsonData.decade[index]}`)
+
+    dataLbl12 = "Population";
+    chartData2 = jsonData.population;
+  }
+  else if (jsonData.report == "FertilityPercentageQuin") {
+    dataLabels = jsonData.country.map((country, index) => `${country} - ${jsonData.decade[index]} - ${jsonData.quintil[index]}`);
+
+    dataLbl12 = "Percentage";
+    chartData2 = jsonData.percentage;
   }
 
+
+  
 
   var myChart = new Chart(ctx, {
     type: "line",
     data: {
       labels: dataLabels,
       datasets: [
-        {
-          label: dataLbl1,
-          data: chartData1,
-          backgroundColor: "rgba(54, 162, 235, 0.2)",
-          borderColor: "rgba(54, 162, 235, 1)",
-          borderWidth: 1,
-          fill: true,
-        },
         {
           label: dataLbl12,
           data: chartData2,

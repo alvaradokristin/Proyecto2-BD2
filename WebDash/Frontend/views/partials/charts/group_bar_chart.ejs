@@ -7,34 +7,64 @@
   var jsonDataStr = `<%- JSON.stringify(lista, null, 2).replace(/"/g, '\\"') %>`;
   var jsonData = JSON.parse(jsonDataStr);
 
-  var dataLabels;
+  var dataLabels, dataLbl1, dataChart1, dataLbl2, dataChart2, dataLbl3, dataChart3;
   if (jsonData.report == "PromMaxMinXRegion") {
-    dataLabels == jsonData.year.map((year, index) => `${year} - ${jsonData.region[index]}`);
+    dataLabels = jsonData.year.map((year, index) => `${year} - ${jsonData.region[index]}`);
+
+    dataLbl1 = "Average";
+    dataChart1 = jsonData.average;
+
+    dataLbl2 = "Max";
+    dataChart2 = jsonData.max;
+
+    dataLbl3 = "Min";
+    dataChart3 = jsonData.min;
   }
   else if (jsonData.report == "PromMaxMinXSubregion") {
-    dataLabels == jsonData.year.map((year, index) => `${year} - ${jsonData.subregion[index]}`);
+    dataLabels = jsonData.year.map((year, index) => `${year} - ${jsonData.subregion[index]}`);
+
+    dataLbl1 = "Average";
+    dataChart1 = jsonData.average;
+
+    dataLbl2 = "Max";
+    dataChart2 = jsonData.max;
+
+    dataLbl3 = "Min";
+    dataChart3 = jsonData.min;
+  }  else if (jsonData.report == "CanCarRespXPaisAnno") {
+    dataLabels = jsonData.year.map((year, index) => `${year} - ${jsonData.country[index]}`);
+
+    dataLbl1 = "Cancer";
+    dataChart1 = jsonData.cancer;
+
+    dataLbl2 = "Enfermedades cardiovasculares";
+    dataChart2 = jsonData.cardiovascular;
+
+    dataLbl3 = "Enfermedades respiratorias";
+    dataChart3 = jsonData.respiratory;
   }
+
   
   var data = {
     labels: dataLabels,
     datasets: [
       {
-        label: "Average",
-        data: jsonData.average,
+        label: dataLbl1,
+        data: dataChart1,
         backgroundColor: "rgba(54, 162, 235, 0.2)",
         borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 1,
       },
       {
-        label: "Max",
-        data: jsonData.max,
+        label: dataLbl2,
+        data: dataChart2,
         backgroundColor: "rgba(75, 192, 192, 1)",
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
       },
       {
-        label: "Min",
-        data: jsonData.min,
+        label: dataLbl3,
+        data: dataChart3,
         backgroundColor: "rgba(153, 102, 255, 1)",
         borderColor: "rgba(153, 102, 255, 1)",
         borderWidth: 1,

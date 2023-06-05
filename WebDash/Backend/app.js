@@ -21,11 +21,14 @@ app.get("/", async function (req, res) {
   res.render("index", {type : "none", lista : null});
 });
 
-app.get("/showWho", async function (req, res) {
-  const response = await getData();
+app.get("/showWho/:Report", async function (req, res) {
+  const type =  "getWhoReport/";
+  const report = req.params.Report;
+  console.log(type + report);
+  const response = await getData(type + report);
   const data = response.data; // Access the response data
-  // console.log(data);
-  res.render("index", {type : "PromMaxMinXRegion", lista : data});
+  //console.log(data);
+  res.render("index", {type : report, lista : data});
 });
 
 app.get("/showHom/:Report", async function (req, res) {

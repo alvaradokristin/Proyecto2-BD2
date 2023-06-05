@@ -9,11 +9,10 @@
   var jsonData = JSON.parse(jsonDataStr);
 
   var dataLabels, dataLbl1, chartData1, dataLbl2, chartData2, dataLbl3, chartData3, dataLbl4, chartData4;
+  
   if (jsonData.report == "PromMaxMinXRegionXSexo") {
-    dataLabels == jsonData.year.map((year, index) => `${year} - ${jsonData.region[index]}`);
-
-    dataLbl1 = "Sexo";
-    chartData1 = jsonData.sex;
+    
+    dataLabels = jsonData.year.map((year, index) => `${year} - ${jsonData.region[index]} - ${jsonData.sex[index]}`);
 
     dataLbl2 = "Min";
     chartData2 = jsonData.min;
@@ -24,11 +23,8 @@
     dataLbl4 = "Average";
     chartData4 = jsonData.average;
   }
-  else if ("PromMaxMinXRegionXSexoDec") {
-    dataLabels == jsonData.decade.map((decade, index) => `${decade} - ${jsonData.region[index]}`);
-
-    dataLbl1 = "Sexo";
-    chartData1 = jsonData.sex;
+  else if (jsonData.report == "PromMaxMinXRegionXSexoDec") {
+    dataLabels = jsonData.decade.map((decade, index) => `${decade} - ${jsonData.region[index]} - ${jsonData.sex[index]}`);
 
     dataLbl2 = "Min";
     chartData2 = jsonData.min;
@@ -39,11 +35,20 @@
     dataLbl4 = "Average";
     chartData4 = jsonData.average;
   }
-  else if ("PromMaxMinXSubregionXSexoDec") {
-    dataLabels == jsonData.decade.map((decade, index) => `${decade} - ${jsonData.subregion[index]}`);
+  else if (jsonData.report == "PromMaxMinXSubregionXSexoDec") {
+    dataLabels = jsonData.decade.map((decade, index) => `${decade} - ${jsonData.subregion[index]} - ${jsonData.sex[index]}`);
 
-    dataLbl1 = "Sexo";
-    chartData1 = jsonData.sex;
+    dataLbl2 = "Min";
+    chartData2 = jsonData.min;
+
+    dataLbl3 = "Max";
+    chartData3 = jsonData.max;
+
+    dataLbl4 = "Average";
+    chartData4 = jsonData.average;
+  }
+  else if (jsonData.report == "PromMaxMinXSubregionXSexo") {
+    dataLabels = jsonData.year.map((year, index) => `${year} - ${jsonData.subregion[index]} - ${jsonData.sex[index]}`);
 
     dataLbl2 = "Min";
     chartData2 = jsonData.min;
@@ -63,17 +68,6 @@
     data: {
       labels: dataLabels,
       datasets: [
-        {
-          label: dataLbl1,
-          data: chartData1,
-          backgroundColor: [
-            "rgba(75, 192, 192, 0.2)",
-          ],
-          borderColor: [
-            "rgba(75, 192, 192, 1)",
-          ],
-          borderWidth: 1,
-        },
         {
           label: dataLbl2,
           data: chartData2,
